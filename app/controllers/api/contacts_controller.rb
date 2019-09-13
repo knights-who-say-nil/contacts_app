@@ -7,7 +7,11 @@ class Api::ContactsController < ApplicationController
 
     search_term = params[:search]
 
-    @contacts = Contact.all
+    if current_user
+      @contacts = current_user.contacts
+    else
+      @contacts = Contact.all
+    end
 
     if search_term
       @contacts = @contacts.where(
