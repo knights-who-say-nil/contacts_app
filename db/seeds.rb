@@ -17,3 +17,21 @@
 #   count += 1
 # end
 
+
+group_names = ["friends", "family", "business", "New York", "San Francisco", "Chicago", "speed dial"]
+
+group_names.each do |group_name|
+  Group.create(name: group_name)
+end
+
+GroupContact.destroy_all
+
+group_ids = Group.pluck(:id)
+
+Contact.all.each do |contact|
+  selected_group_ids = group_ids.sample(rand(2..5))
+  selected_group_ids.each do |selected_group_id|
+    GroupContact.create(contact_id: contact.id, group_id: selected_group_id)
+    puts "Contact: #{contact.id}, Group: #{selected_group_id}"
+  end
+end

@@ -11,5 +11,6 @@
               updated_at: contact.friendly_updated_at,
               japan_number: contact.japan_number
               },
-  user_id: contact.user_id
+  user_id: contact.user_id,
+  groups: contact.groups
 }
